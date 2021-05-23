@@ -14,7 +14,7 @@ type Handler = (req: http.ServerRequest) => void
  */
 export type AddressInfo = {
   family: string
-  host: string
+  address: string
   port: number
 }
 
@@ -52,7 +52,7 @@ export class Server extends EventEmitter<Events> {
     const netAddr = this.#server?.listener.addr as Deno.NetAddr
 
     if (unixAddr.path) return unixAddr.path
-    else return { family: 'IPv4', host: netAddr.hostname, port: netAddr.port }
+    else return { family: 'IPv4', address: netAddr.hostname, port: netAddr.port }
   }
 }
 
