@@ -1,6 +1,8 @@
 import * as http from 'https://deno.land/std@0.97.0/http/server.ts'
 import { EventEmitter } from 'https://deno.land/x/event@1.0.0/mod.ts'
 
+import { getFreePort } from 'https://deno.land/x/free_port@v1.2.0/mod.ts'
+
 type Events = {
   error: [Error]
   listening: []
@@ -27,7 +29,9 @@ export class Server extends EventEmitter<Events> {
     this.handler = handler
   }
 
-  async listen(addr: string | http.HTTPOptions) {
+  async listen(addr?: string | http.HTTPOptions) {
+    if (!addr) addr = { port: await getFreePort(3000) }
+
     try {
       this.#server = http.serve(addr)
     } catch (e) {
