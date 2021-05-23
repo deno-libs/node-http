@@ -2,11 +2,9 @@
 
 [![][docs-badge]][docs]
 
-> ⚠️ The library doesn't intend to be a 1:1 port of Node.js `http` module!
-
 Node.js-like HTTP server for Deno. Makes porting web things from Node (a little bit) easier.
 
-## Usage
+## Example
 
 ```js
 import { createServer } from 'https://deno.land/x/node_http/mod.ts'
