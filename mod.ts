@@ -9,7 +9,7 @@ type Events = {
   request: [http.ServerRequest]
 }
 
-type Handler = (req: http.ServerRequest) => void
+export type ServerHandler = (req: http.ServerRequest) => void
 
 /**
  * Ported from `net.AddressInfo`
@@ -22,9 +22,9 @@ export type AddressInfo = {
 
 export class Server extends EventEmitter<Events> {
   #server?: http.Server
-  handler?: Handler
+  handler?: ServerHandler
 
-  constructor(handler: Handler) {
+  constructor(handler: ServerHandler) {
     super()
     this.handler = handler
   }
@@ -60,4 +60,4 @@ export class Server extends EventEmitter<Events> {
   }
 }
 
-export const createServer = (handler: Handler) => new Server(handler)
+export const createServer = (handler: ServerHandler) => new Server(handler)
