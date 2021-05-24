@@ -36,6 +36,7 @@ export class Server extends EventEmitter<Events> {
       this.#server = http.serve(addr)
     } catch (e) {
       this.emit('error', e)
+      throw e
     }
 
     this.emit('listening')
@@ -47,6 +48,7 @@ export class Server extends EventEmitter<Events> {
       }
     } catch (e) {
       this.emit('error', e)
+      throw e
     }
 
     return this.#server
@@ -55,7 +57,7 @@ export class Server extends EventEmitter<Events> {
     const unixAddr = this.#server?.listener.addr as Deno.UnixAddr
     const netAddr = this.#server?.listener.addr as Deno.NetAddr
 
-    if (unixAddr.path) return unixAddr.path
+    if (unixAddr?.path) return unixAddr.path
     else return { family: 'IPv4', address: netAddr.hostname, port: netAddr.port }
   }
 }
