@@ -25,7 +25,7 @@ export class Server extends EventEmitter<Events> {
   #server?: http.Server
   handler?: ServerHandler
 
-  constructor(handler: ServerHandler) {
+  constructor(handler?: ServerHandler) {
     super()
     this.handler = handler
   }
@@ -67,4 +67,4 @@ export class Server extends EventEmitter<Events> {
   }
 }
 
-export const createServer = (handler: ServerHandler) => new Server(handler)
+export const createServer = (handler?: ServerHandler) => new Server(handler)
