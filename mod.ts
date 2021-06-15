@@ -1,4 +1,4 @@
-import * as http from 'https://deno.land/std@0.98.0/http/server.ts'
+import * as http from 'https://deno.land/std@0.99.0/http/server.ts'
 import { EventEmitter } from 'https://deno.land/x/event@2.0.0/mod.ts'
 
 import { getFreePort } from 'https://deno.land/x/free_port@v1.2.0/mod.ts'
