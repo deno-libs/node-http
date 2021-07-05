@@ -36,7 +36,7 @@ export class Server extends EventEmitter<Events> {
     try {
       this.#server = http.serve(addr)
     } catch (e) {
-      this.emit('error', e)
+      await this.emit('error', e)
       throw e
     }
 
@@ -44,11 +44,11 @@ export class Server extends EventEmitter<Events> {
 
     try {
       for await (const req of this.#server!) {
-        this.emit('request', req)
+        await this.emit('request', req)
         this.handler?.(req)
       }
     } catch (e) {
-      this.emit('error', e)
+      await this.emit('error', e)
       throw e
     }
 
