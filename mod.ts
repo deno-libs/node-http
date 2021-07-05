@@ -10,7 +10,7 @@ type Events = {
   close: []
 }
 
-export type ServerHandler = (req: http.ServerRequest) => void
+export type ServerHandler = (req: http.ServerRequest) => void | Promise<void>
 
 /**
  * Ported from `net.AddressInfo`
@@ -45,7 +45,7 @@ export class Server extends EventEmitter<Events> {
     try {
       for await (const req of this.#server!) {
         await this.emit('request', req)
-        this.handler?.(req)
+        await this.handler?.(req)
       }
     } catch (e) {
       await this.emit('error', e)
