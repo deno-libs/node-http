@@ -1,6 +1,6 @@
 import { describe, expect, it, run } from 'https://deno.land/x/tincan@0.2.1/mod.ts'
 import { createServer } from './mod.ts'
-import { makeFetch } from 'https://deno.land/x/superfetch@0.0.8/mod.ts'
+import { makeFetch } from 'https://deno.land/x/superfetch@0.0.9/mod.ts'
 
 describe('node_http', () => {
   it('should start the server', async () => {
@@ -29,7 +29,6 @@ describe('node_http', () => {
         req.respond({ body: 'hello' })
       })
 
-      // @ts-ignore
       const fetch = makeFetch(s)
 
       await fetch('/').expect('hello')
