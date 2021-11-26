@@ -6,6 +6,8 @@
 
 </div>
 
+> ⚠️ **DEPRECATED!** Use [std/http](https://deno.land/std/node/http.ts) instead.
+
 Node.js-like HTTP server for Deno. Makes porting web things from Node (a little bit) easier.
 
 ## Example
